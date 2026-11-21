@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đặt lịch khám răng miễn phí</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Trang tuyển ca: mở đầu ngắn, 2 thẻ "nhóm đang cần ca" có hình minh hoạ, 1 hàng ảnh ca đã làm, form đặt lịch.
+   Nền trắng ngà và be, nút vàng bo tròn, chữ to cho người lớn tuổi. */
+:root{
+  --bg:#FFFFFF;
+  --cream:#FAF6F1;
+  --beige:#F1E7DA;
+  --line:#E7DCCD;
+  --ink:#2B241D;
+  --muted:#6B6157;
+  --gold:#E2B04A;
+  --gold-dark:#B98425;
+  --font:"Lexend", "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{font-size:18px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6}
+img,svg{max-width:100%;display:block}
+h1,h2,h3{margin:0;line-height:1.25;text-wrap:balance;font-weight:600}
+h1{font-size:2.2rem}
+h2{font-size:1.7rem}
+h3{font-size:1.2rem}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+.muted{color:var(--muted)}
+.eyebrow{font-size:.85rem;font-weight:500;color:var(--gold-dark);letter-spacing:.06em;text-transform:uppercase}
+.sec-head{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;max-width:640px;margin:0 auto 30px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:12px 26px;border-radius:999px;font:inherit;font-weight:600;font-size:1rem;text-decoration:none;cursor:pointer;border:2px solid var(--gold);transition:background .15s}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:#D9A23A}
+.btn-line{background:#fff;color:var(--ink)}
+.btn-line:hover{background:var(--cream)}
+.btn-sm{min-height:44px;padding:8px 18px;font-size:.92rem;white-space:nowrap}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.pill:focus-within{outline:3px solid var(--gold-dark);outline-offset:2px}
+
+.topbar{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo b{display:block;white-space:nowrap;font-size:1.02rem;font-weight:700;letter-spacing:.02em}
+.logo small{display:block;font-size:.72rem;color:var(--muted);margin-top:-2px}
+
+/* Mở đầu + 2 ca đang cần */
+.hero{background:var(--cream);padding:48px 0 56px}
+.hero-head{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;max-width:700px;margin:0 auto 34px}
+.free{display:inline-flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-weight:500;font-size:.92rem}
+.free b{color:var(--gold-dark)}
+.needs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.need{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;display:flex;flex-direction:column;gap:16px}
+.need-top{display:flex;gap:18px;align-items:center}
+.need-top svg{flex:none;width:96px;height:96px;background:var(--cream);border-radius:22px;padding:10px}
+.tagline{font-size:.82rem;font-weight:600;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.05em}
+.signs{display:flex;flex-direction:column;gap:8px}
+.signs li{display:flex;gap:10px;align-items:flex-start}
+.signs li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%232B241D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.need .btn{margin-top:auto;align-self:flex-start}
+
+/* Ca đã làm */
+.proof{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px}
+.proof figure{margin:0;position:relative}
+.proof img{width:100%;height:260px;object-fit:cover;border-radius:20px}
+.proof figcaption{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.94);border-radius:999px;padding:4px 12px;font-size:.8rem;font-weight:500}
+.proof-note{text-align:center;margin-top:14px;font-size:.85rem;color:var(--muted)}
+
+/* Đặt lịch */
+.book{background:var(--cream)}
+.book .wrap{max-width:720px}
+form{background:#fff;border:1px solid var(--line);border-radius:26px;padding:28px;display:flex;flex-direction:column;gap:24px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px;border:0;padding:0;margin:0;min-width:0}
+.q{font-weight:500;font-size:.95rem;padding:0}
+input[type=text],input[type=tel],textarea,select{font:inherit;font-size:1rem;padding:13px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);width:100%}
+textarea{min-height:64px;resize:vertical}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 22px) 52%,calc(100% - 16px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative}
+.pill input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.pill span{display:inline-flex;align-items:center;min-height:46px;padding:8px 16px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-size:.93rem}
+.pill input:checked + span{border-color:var(--gold);background:#FBEFD6;font-weight:500}
+.q .num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--gold);font-size:.82rem;font-weight:600;margin-right:10px;vertical-align:1px}
+form .q{font-size:1.05rem}
+.pills.big .pill span{min-height:52px;font-size:1rem;padding:10px 20px}
+.more{border:1.5px dashed var(--line);border-radius:16px;padding:4px 16px}
+.more summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-weight:500;color:var(--gold-dark);list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--gold-dark);margin-right:10px;font-weight:600}
+.more[open] summary::before{content:"−"}
+.more-body{display:flex;flex-direction:column;gap:14px;padding:4px 0 16px}
+.hint-c{text-align:center;font-size:.9rem;color:var(--muted)}
+.error{color:#9B3B2A;font-weight:500;display:none}
+.error.show{display:block}
+.result{display:none;flex-direction:column;gap:14px;background:#fff;border:2px solid var(--gold);border-radius:26px;padding:24px}
+.result.show{display:flex}
+.msg{white-space:pre-wrap;background:var(--cream);border-radius:14px;padding:14px 16px;font-size:.95rem}
+.ok{display:flex;align-items:center;gap:12px}
+.tick{flex:none;width:44px;height:44px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-weight:700;font-size:1.3rem}
+.demo{background:#FFF4D6;border:1px dashed var(--gold-dark);border-radius:12px;padding:10px 14px;font-size:.88rem}
+.btn:disabled{opacity:.6;cursor:wait}
+.send-row{display:flex;flex-wrap:wrap;gap:10px}
+
+footer{background:var(--ink);color:#EDE3D6;padding:26px 0;font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+@media (max-width:820px){
+  .needs{grid-template-columns:1fr}
+  .proof{grid-template-columns:1fr 1fr}
+  .proof figure:first-child{grid-column:1 / span 2}
+  .proof img{height:200px}
+}
+@media (max-width:560px){
+  html{font-size:17px}
+  h1{font-size:1.8rem}
+  h2{font-size:1.45rem}
+  section{padding:44px 0}
+  .row2{grid-template-columns:1fr}
+  .logo small{display:none}
+  .need-top svg{width:76px;height:76px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="19" r="18" fill="none" stroke="#E2B04A" stroke-width="2"/><path d="M12.5 12c2.4-1.5 4.4.2 6.5.2s4.1-1.7 6.5-.2c2.6 1.7 1.7 6.5-.4 9.7-1.1 1.7-1.3 5.4-2.8 5.4-1.7 0-1.5-4.8-3.3-4.8s-1.6 4.8-3.3 4.8c-1.5 0-1.7-3.7-2.8-5.4-2.1-3.2-3-8-.4-9.7z" fill="none" stroke="#2B241D" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <span><b id="brandName">NHA KHOA</b><small>Có bác sĩ hướng dẫn từng ca</small></span>
+    </a>
+    <a class="btn btn-gold btn-sm" href="#dat-lich">Đặt lịch</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-head">
+        <span class="free"><b>Miễn phí</b> cho ca phù hợp</span>
+        <h1>Các vấn đề được ưu tiên</h1>
+        <p class="muted">Điều trị tại phòng khám của trường, mỗi bước đều có bác sĩ hướng dẫn giám sát. Cô chú, anh chị thấy mình giống một trong hai trường hợp dưới đây thì đặt lịch để nhóm khám nhé.</p>
+      </div>
+
+      <div class="needs">
+        <article class="need">
+          <div class="need-top">
+            <svg viewBox="0 0 80 80" aria-hidden="true">
+              <path d="M18 22c0-9 10-12 22-8 12-4 22-1 22 8l-2 22c-1 14-6 26-10 26-5 0-4-16-10-16s-5 16-10 16c-4 0-9-12-10-26z" fill="#fff" stroke="#2B241D" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M30 20c4-2 7 1 10 0s7-3 10 0c1 4-2 9-10 9s-11-5-10-9z" fill="#9AA3AB" stroke="#2B241D" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M8 40l6 2-4 4 6 2M72 40l-6 2 4 4-6 2" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <span class="tagline">Chữa tuỷ (nội nha)</span>
+              <h3>Răng đã trám mà vẫn đau</h3>
+            </div>
+          </div>
+          <ul class="signs">
+            <li>Răng có miếng trám cũ, nay đau nhức trở lại</li>
+            <li>Đau tự nhiên, đau nhiều về đêm</li>
+            <li>Ê buốt kéo dài khi ăn nóng, lạnh</li>
+            <li>Đau khi cắn, khi nhai vào răng đó</li>
+          </ul>
+          <a class="btn btn-gold" href="#dat-lich" data-pick="p1">Tôi bị như vậy, đặt lịch</a>
+        </article>
+
+        <article class="need">
+          <div class="need-top">
+            <svg viewBox="0 0 80 80" aria-hidden="true">
+              <path d="M18 18c0-8 10-11 22-7 12-4 22-1 22 7l-2 22c-1 14-6 26-10 26-5 0-4-16-10-16s-5 16-10 16c-4 0-9-12-10-26z" fill="#fff" stroke="#2B241D" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M19 36c4 3 8-1 12 2s8-2 12 1 8-1 12 1 4-1 5-1l-1 9c-6 2-10-1-15 1s-9-2-14 0-8 0-10-1z" fill="#C9A35B" stroke="#8A6A2E" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M10 50c8-6 16-3 30-3s22-3 30 3v22H10z" fill="#E8A3A3" stroke="#B85C5C" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="30" cy="62" r="2" fill="#C0392B"/><circle cx="48" cy="58" r="2" fill="#C0392B"/>
+            </svg>
+            <div>
+              <span class="tagline">Nha chu</span>
+              <h3>Lâu năm không lấy vôi, hút thuốc lâu năm</h3>
+            </div>
+          </div>
+          <ul class="signs">
+            <li>Vôi bám dày, đổi màu vàng nâu ở chân răng</li>
+            <li>Nướu sưng, hay chảy máu khi chải răng</li>
+            <li>Hôi miệng dù đã chải răng kỹ</li>
+            <li>Nướu tụt, răng hơi lung lay</li>
+          </ul>
+          <a class="btn btn-gold" href="#dat-lich" data-pick="p2">Tôi bị như vậy, đặt lịch</a>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Ca nhóm đã làm</span>
+        <h2>Làm kỹ từng bước, có bác sĩ giám sát</h2>
+      </div>
+      <div class="proof">
+        <figure><img src="img/ban-ham-truoc.jpg" alt="Hàm giả bán hàm nhóm đã làm, đang đeo trong miệng bệnh nhân" loading="lazy"><figcaption>Hàm giả đã giao</figcaption></figure>
+        <figure><img src="img/ban-ham-duoi.jpg" alt="Hàm giả bán hàm dưới đã đeo, nhìn từ trên xuống" loading="lazy"><figcaption>Hàm giả dưới</figcaption></figure>
+        <figure><img src="img/tram-1.jpg" alt="Khám răng cho bệnh nhân đang niềng răng" loading="lazy"><figcaption>Khám, trám răng</figcaption></figure>
+      </div>
+      <p class="proof-note">50+ lượt hẹn điều trị từ tháng 9/2026. Ảnh đăng với sự đồng ý của bệnh nhân.</p>
+    </div>
+  </section>
+
+  <section class="book" id="dat-lich">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Đặt lịch</span>
+        <h2>Đặt lịch khám</h2>
+        <p class="muted">Điền vài dòng, nhóm sẽ gọi lại xác nhận giờ hẹn.</p>
+      </div>
+
+      <form id="bookForm" novalidate>
+        <div class="field">
+          <label class="q" for="name"><span class="num">1</span>Họ và tên</label>
+          <input type="text" id="name" autocomplete="name" placeholder="Ví dụ: Nguyễn Văn An">
+        </div>
+        <div class="field">
+          <label class="q" for="phone"><span class="num">2</span>Số điện thoại</label>
+          <input type="tel" id="phone" inputmode="tel" autocomplete="tel" placeholder="Ví dụ: 0901 234 567">
+        </div>
+        <fieldset class="field">
+          <legend class="q"><span class="num">3</span>Răng cô chú bị sao?</legend>
+          <div class="pills big" id="problems">
+            <label class="pill"><input type="radio" name="problem" id="p1" value="Răng đã trám mà vẫn đau"><span>Răng đã trám mà vẫn đau</span></label>
+            <label class="pill"><input type="radio" name="problem" id="p2" value="Lâu không lấy vôi / hút thuốc lâu năm"><span>Lâu không lấy vôi, hút thuốc</span></label>
+            <label class="pill"><input type="radio" name="problem" id="p3" value="Khác"><span>Khác</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend class="q"><span class="num">4</span>Cô chú đến buổi nào được?</legend>
+          <div class="pills big">
+            <label class="pill"><input type="radio" name="session" id="s1" value="Buổi sáng"><span>Sáng</span></label>
+            <label class="pill"><input type="radio" name="session" id="s2" value="Buổi chiều"><span>Chiều</span></label>
+            <label class="pill"><input type="radio" name="session" id="s3" value="Buổi nào cũng được" checked><span>Buổi nào cũng được</span></label>
+          </div>
+        </fieldset>
+
+        <details class="more">
+          <summary>Thêm thông tin khác (không bắt buộc)</summary>
+          <div class="more-body">
+            <div class="field">
+              <label class="q" for="relPhone">Số người thân, nếu gọi cô chú không được</label>
+              <input type="tel" id="relPhone" inputmode="tel" placeholder="Ví dụ: con gái 0912 345 678">
+            </div>
+            <div class="field">
+              <label class="q" for="referrer">Ai giới thiệu cô chú đến?</label>
+              <input type="text" id="referrer" placeholder="Tên người giới thiệu">
+            </div>
+            <div class="field">
+              <label class="q" for="day">Ngày muốn đến</label>
+              <select id="day"></select>
+            </div>
+            <div class="field">
+              <label class="q" for="note">Kể thêm về răng</label>
+              <textarea id="note" placeholder="Ví dụ: răng trám 2 năm trước, giờ đau về đêm"></textarea>
+            </div>
+          </div>
+        </details>
+
+        <p class="error" id="err" role="alert"></p>
+        <button class="btn btn-gold" type="submit" id="submitBtn">Gửi lịch hẹn</button>
+        <p class="hint-c">Nhóm sẽ gọi lại để hẹn giờ cụ thể.</p>
+      </form>
+
+      <div id="sent" class="result" aria-live="polite">
+        <p class="demo" id="demoNote" hidden>Bản xem thử: lịch này chưa được gửi thật. Khi đưa web lên Vercel, lịch sẽ tự về email của nhóm.</p>
+        <div class="ok"><span class="tick" aria-hidden="true">✓</span><h3>Nhóm đã nhận lịch hẹn của cô chú</h3></div>
+        <p>Nhóm sẽ gọi lại số <b id="sentPhone"></b> để xác nhận giờ hẹn. Cô chú để ý điện thoại giúp nhóm nhé.</p>
+        <div class="msg" id="sentMsg"></div>
+        <button class="btn btn-line btn-sm" type="button" id="againBtn">Đặt thêm lịch khác</button>
+      </div>
+
+      <div id="done" class="result" aria-live="polite">
+        <h3>Chưa gửi được, cô chú gửi tin nhắn này cho nhóm giúp nhé</h3>
+        <div class="msg" id="msg"></div>
+        <div class="send-row" id="sendRow"></div>
+        <p class="muted" id="copyNote"></p>
+        <button class="btn btn-line btn-sm" type="button" id="editBtn">Sửa lại</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Vạn Phúc City, Thủ Đức · Thứ Hai đến Thứ Bảy, 8h00 đến 16h30 · Liên hệ: <span id="phoneShow"></span></span>
+    <span>Sinh viên Răng Hàm Mặt điều trị, bác sĩ hướng dẫn giám sát</span>
+  </div>
+</footer>
+
+<script>
+/* ===== CÀI ĐẶT ===== */
+const CONFIG = {
+  email: "nlbt1301@gmail.com", // lịch hẹn tự gửi về email này
+  demo: true,                  // true = bản xem thử, không gửi thật. Đổi thành false khi đưa lên Vercel
+  phone: "",                   // số điện thoại / Zalo của nhóm, ví dụ "0901234567"
+  zalo: "",
+  brand: "NHA KHOA"
+};
+/* ==================== */
+
+const $ = (id) => document.getElementById(id);
+const phone = CONFIG.phone.replace(/\D/g, "");
+const zalo = (CONFIG.zalo || CONFIG.phone).replace(/\D/g, "");
+$("brandName").textContent = CONFIG.brand;
+function prettyPhone(p){ return p.replace(/(\d{4})(\d{3})(\d+)/, "$1 $2 $3"); }
+$("phoneShow").textContent = phone ? prettyPhone(phone) : "đang cập nhật";
+
+// Nút "Tôi bị như vậy" chọn sẵn tình trạng trong form
+document.querySelectorAll("[data-pick]").forEach(a => a.addEventListener("click", () => {
+  const r = $(a.dataset.pick); if (r) r.checked = true;
+}));
+
+// Danh sách ngày: 12 ngày tới, bỏ Chủ nhật
+const dayNames = ["CN","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"];
+const sel = $("day");
+sel.add(new Option("Ngày nào cũng được", "Ngày nào cũng được"));
+const today = new Date(); today.setHours(0,0,0,0);
+for (let i = 1, n = 0; n < 12 && i < 30; i++) {
+  const d = new Date(today); d.setDate(today.getDate() + i);
+  if (d.getDay() === 0) continue;
+  const label = dayNames[d.getDay()] + ", " + d.getDate() + "/" + (d.getMonth()+1);
+  sel.add(new Option(label, label));
+  n++;
+}
+
+const pick = (name) => (document.querySelector('input[name=' + name + ']:checked') || {}).value || "";
+
+function collect(){
+  const f = {
+    "Họ tên": $("name").value.trim(),
+    "Số điện thoại": $("phone").value.trim(),
+    "Tình trạng": pick("problem"),
+    "Buổi": pick("session"),
+    "Số người thân": $("relPhone").value.trim(),
+    "Người giới thiệu": $("referrer").value.trim(),
+    "Ngày muốn đến": sel.value,
+    "Kể thêm": $("note").value.trim()
+  };
+  const lines = ["ĐẶT LỊCH KHÁM RĂNG"];
+  for (const [k, v] of Object.entries(f)) if (v) lines.push(k + ": " + v);
+  return { f, text: lines.join("\n") };
+}
+
+async function sendToEmail(f){
+  const body = Object.assign({
+    _subject: "Lịch hẹn mới: " + f["Họ tên"] + " - " + f["Số điện thoại"],
+    _template: "table",
+    _captcha: "false"
+  }, f);
+  const r = await fetch("https://formsubmit.co/ajax/" + CONFIG.email, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(body)
+  });
+  const j = await r.json().catch(() => ({}));
+  return r.ok && String(j.success) === "true";
+}
+
+function show(id){
+  ["sent","done"].forEach(x => $(x).classList.remove("show"));
+  $("bookForm").style.display = id ? "none" : "";
+  if (id) { $(id).classList.add("show"); $(id).scrollIntoView({behavior:"smooth", block:"start"}); }
+}
+
+function showFallback(text){
+  $("msg").textContent = text;
+  const row = $("sendRow");
+  row.innerHTML = "";
+  if (zalo) {
+    const z = document.createElement("a");
+    z.className = "btn btn-gold"; z.href = "https://zalo.me/" + zalo; z.target = "_blank"; z.rel = "noopener";
+    z.textContent = "Mở Zalo của nhóm";
+    row.appendChild(z);
+  }
+  if (phone) {
+    const s = document.createElement("a");
+    s.className = "btn btn-gold"; s.href = "sms:" + phone + "?&body=" + encodeURIComponent(text);
+    s.textContent = "Gửi tin nhắn";
+    row.appendChild(s);
+    const c = document.createElement("a");
+    c.className = "btn btn-line"; c.href = "tel:" + phone; c.textContent = "Gọi " + prettyPhone(phone);
+    row.appendChild(c);
+  }
+  const copyBtn = document.createElement("button");
+  copyBtn.type = "button"; copyBtn.className = "btn btn-line"; copyBtn.textContent = "Sao chép tin nhắn";
+  copyBtn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(text); $("copyNote").textContent = "Đã sao chép. Mở Zalo, dán vào ô tin nhắn rồi bấm gửi."; }
+    catch (_) { $("copyNote").textContent = "Máy chưa cho sao chép. Cô chú bấm giữ vào khung tin nhắn ở trên để chọn và sao chép."; }
+  });
+  row.appendChild(copyBtn);
+  $("copyNote").textContent = phone ? "" : "Nhóm đang cập nhật số điện thoại.";
+  show("done");
+}
+
+$("bookForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const { f, text } = collect();
+  const err = $("err");
+  if (!f["Họ tên"]) { err.textContent = "Cô chú điền giúp họ và tên nhé."; err.classList.add("show"); $("name").focus(); return; }
+  if (f["Số điện thoại"].replace(/\D/g,"").length < 9) { err.textContent = "Số điện thoại chưa đúng, cô chú kiểm tra lại giúp nhé."; err.classList.add("show"); $("phone").focus(); return; }
+  err.classList.remove("show");
+
+  const btn = $("submitBtn");
+  btn.disabled = true; btn.textContent = "Đang gửi...";
+  let ok = false;
+  if (CONFIG.demo) { ok = true; }
+  else { try { ok = await sendToEmail(f); } catch (_) { ok = false; } }
+  btn.disabled = false; btn.textContent = "Gửi lịch hẹn";
+
+  if (ok) {
+    $("demoNote").hidden = !CONFIG.demo;
+    $("sentPhone").textContent = f["Số điện thoại"];
+    $("sentMsg").textContent = text;
+    show("sent");
+  } else {
+    showFallback(text);
+  }
+});
+
+$("editBtn").addEventListener("click", () => { show(null); $("name").focus(); });
+$("againBtn").addEventListener("click", () => { $("bookForm").reset(); show(null); $("name").focus(); });
+</script>
+</body>
+</html>
